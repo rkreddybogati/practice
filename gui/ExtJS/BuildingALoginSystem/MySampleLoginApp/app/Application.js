@@ -12,8 +12,24 @@ Ext.define('MySampleLoginApp.Application', {
         // TODO: add global / shared stores here
     ],
     
+    views: [
+        'MySampleLoginApp.view.login.Login',
+        'MySampleLoginApp.view.main.Main'
+    ],
+	
     launch: function () {
-        // TODO - Launch the application
+	// It's important to note that this type of application could use
+        // any type of storage, i.e., Cookies, LocalStorage, etc.
+        var loggedIn;
+
+        // Check to see the current value of the localStorage key
+        loggedIn = localStorage.getItem("TutorialLoggedIn");
+
+        // This ternary operator determines the value of the TutorialLoggedIn key.
+        // If TutorialLoggedIn isn't true, we display the login window,
+        // otherwise, we display the main view
+        Ext.widget(loggedIn ? 'app-main' : 'login')
+       
     },
 
     onAppUpdate: function () {
